@@ -10,7 +10,7 @@ export default class App extends React.Component {
       <>
       <SettingsProvider>
           <Header/>
-          <Forms/>
+          {/* <Forms/> */}
       <ToDo />
       </SettingsProvider>
     </>

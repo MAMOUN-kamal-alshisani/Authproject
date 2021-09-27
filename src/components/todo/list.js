@@ -6,13 +6,6 @@ import ToDo from './todo'
 import Forms from './wform'
 
 
-
-
-
-
-
-
-
 function List(props){ 
 return(
     <div>
@@ -30,10 +23,13 @@ return(
           <div onClick={() => props.toggleComplete(item.id)}>Complete: {item.complete.toString()}</div>
           <hr />
           <Button variant='danger' className="-danger" onClick={() => props.deleteItem(item.id)}></Button>
-        </div>
+        
+        </div> 
         
 
-      ))}
+       ))}
+       <Button onClick={props.previous}>Previous</Button>
+                <Button onClick={props.next}>Next</Button>
 </div>
 )
 }

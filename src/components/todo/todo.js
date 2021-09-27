@@ -4,8 +4,8 @@ import List from './list'
 // import { Navbar, Alignment, Button } from "@blueprintjs/core";
 import { v4 as uuid } from 'uuid';
 // import {Form } from 'react'
-
-
+import Forms from '../todo/wform'
+import Paginate from '../todo/context/pignate'
 
 
 function ToDo(){
@@ -14,8 +14,9 @@ const [list, setList] = useState([]);
   const [incomplete, setIncomplete] = useState([]);
   const { handleChange, handleSubmit } = useForm(addItem);
 
-  const [firstPage, setfirstPage] = useState(0);
-  const [Allpages, setAllpages] = useState(3);
+  const [firstPage, setfirstPage] = useState(1);
+  const [Allpages] = useState(3);
+
   function addItem(item) {
     console.log(item);
     item.id = uuid();
@@ -24,8 +25,8 @@ const [list, setList] = useState([]);
   }
   const thelastPAGE = firstPage * Allpages;
   const thefirstPAGE = thelastPAGE - Allpages;
-  const currentCard = list.slice(thefirstPAGE, thelastPAGE);
-
+  const currentPAGE = list.slice(thefirstPAGE, thelastPAGE);
+  
   function deleteItem(id) {
     const items = list.filter( item => item.id !== id );
     setList(items);
@@ -39,13 +40,8 @@ const [list, setList] = useState([]);
       }
       return item;
     });
-
+  
     setList(items);
-
-  }
-  function paginat() {
-    let pages = list.slice(firstPage, Allpages);
-    return pages;
   }
   useEffect(() => {
     let incompleteCount = list.filter(item => !item.complete).length;
@@ -61,11 +57,15 @@ const [list, setList] = useState([]);
         incomplete={incomplete}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
-        list={firstPage}
+        list={currentPAGE}
         toggleComplete={toggleComplete}
         deleteItem={deleteItem}
       />
-
+     <Paginate
+        Allpages={Allpages}
+        totality={list.length}
+        Paginate={Paginate}
+      />
     </>
   );
 };

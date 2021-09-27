@@ -29,7 +29,7 @@ function Forms(props){
 
       <Form.Group>
       <Form.Label>
-        To Do Item
+      Difficulty
         </Form.Label>
         <Form.Label >
          <input onChange={props.handleChange} name="assignee" type="text" placeholder="Assignee Name"/>
@@ -42,7 +42,7 @@ function Forms(props){
         </Form.Label>
         <Form.Label >
         <input onChange={props.handleChange} defaultValue={3} type="range" min={1} max={5} name="difficulty"/>
-        <Button type="submit" onChange={props.handleSubmit}>Add Item</Button>
+        <Button type="submit">Add Item</Button>
         </Form.Label>
       </Form.Group>
 <Col xs={9}>
